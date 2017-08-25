@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/MrDulka/timestamp-microservice-fcc#readme",
   "dependencies": {
-    "express": "^4.15.4"
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "moment": "^2.18.1"
   }
 }
