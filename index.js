@@ -22,20 +22,12 @@ app.listen(app.get('port'), function() {
 });
 
 function formatTime(time){
-  var naturalTime = moment(time, "MMMM DD, YYYY").format("MMMM DD, YYYY");
-  var unixTime = moment(time, "x").valueOf();
+  var date = new Date(time);
 
-  if (naturalTime === time){
+  if (!isNaN(+date)){
     return JSON.stringify ({
-      "unix": moment(naturalTime, "MMMM DD, YYYY").valueOf(),
-      "natural": naturalTime
-    });
-  }
-
-  if(unixTime === +time){
-    return JSON.stringify ({
-      "unix": unixTime,
-      "natural": moment(unixTime, "x").format("MMMM DD, YYYY")
+      "unix": +date,
+      "natural": moment(date).format("MMMM DD, YYYY")
     });
   }
 
@@ -44,4 +36,12 @@ function formatTime(time){
     "natural": null
   });
 
+  /*  var unixTime = moment(time, "x").valueOf();
+
+    if(unixTime === +time){
+      return JSON.stringify ({
+        "unix": unixTime,
+        "natural": moment(unixTime, "x").format("MMMM DD, YYYY")
+      });
+    }*/
 }
