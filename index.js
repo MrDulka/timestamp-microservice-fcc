@@ -23,6 +23,14 @@ app.listen(app.get('port'), function() {
 
 function formatTime(time){
   var date = new Date(time);
+  var unixTime = moment(time, "x").valueOf();
+
+  if(unixTime === +time){
+    return JSON.stringify ({
+      "unix": unixTime,
+      "natural": moment(unixTime, "x").format("MMMM DD, YYYY")
+    });
+  }
 
   if (!isNaN(+date)){
     return JSON.stringify ({
@@ -36,12 +44,5 @@ function formatTime(time){
     "natural": null
   });
 
-  /*  var unixTime = moment(time, "x").valueOf();
 
-    if(unixTime === +time){
-      return JSON.stringify ({
-        "unix": unixTime,
-        "natural": moment(unixTime, "x").format("MMMM DD, YYYY")
-      });
-    }*/
 }
